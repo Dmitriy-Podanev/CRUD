@@ -14,6 +14,7 @@ class App extends Component {
         isLoading: true,
         dataM: [],
         editIdx: -1,
+        res:[]
 
     }
 
@@ -36,12 +37,7 @@ class App extends Component {
 
 
         await axios.post("http://178.128.196.163:3000/api/records/" + i.toLocaleString(), this.state.dataM.find(el => el._id == i))
-            .then(response => {
-                console.log(response)
-            })
-            .catch(error => {
-                console.log(error)
-            });
+            .then(this.setState({dataM:this.state.res,res:[]}))
 
 
     };
@@ -52,7 +48,9 @@ class App extends Component {
            const obj =  original.find(el => el._id == i)
 
              obj.data = {...obj.data, [e.target.name]: e.target.value}
-             this.setState({dataM:original})
+          await   this.setState({res:original})
+        console.log(this.state.res)
+             // this.setState({dataM:original})
 
 
 
