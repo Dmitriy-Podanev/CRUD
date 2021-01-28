@@ -21,6 +21,8 @@ class App extends Component {
 
         fetch('http://178.128.196.163:3000/api/records/' + i.toLocaleString(), { method: 'DELETE' })
             .then(r=>console.log(r.data))
+            .then(this.setState({dataM : this.state.dataM.filter(UserId => UserId._id !== i)}))
+        console.log(this.state.dataM)
     };
     startEditing = async i => {
         this.setState({ editIdx: i });
